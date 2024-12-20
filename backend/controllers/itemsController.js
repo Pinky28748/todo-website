@@ -24,3 +24,16 @@ exports.getTodoItems = async (req,res,next) => {
     }
 
 }
+exports.deleteTodoItem = async (req,res,next) => {
+    try
+    {
+        const id = req.params.id;
+        const deletedItem = await TodoItem.findByIdAndDelete(id);
+        res.json(deletedItem)
+    }
+    catch(err)
+    {
+         res.status(500).json({message : err});
+    }
+
+}
